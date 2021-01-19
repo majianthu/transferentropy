@@ -1,14 +1,10 @@
 from copent import copent
 from pandas import read_csv
 import numpy as np
-import requests
 import matplotlib.pyplot as plt
 
 url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00381/PRSA_data_2010.1.1-2014.12.31.csv"
-d_url = requests.get(url)
-with open("data1.csv","wb") as f1:
-	f1.write(d_url.content)
-prsa2010 = read_csv("data1.csv")
+prsa2010 = read_csv(url)
 # index: 5(PM2.5),6(Dew Point),7(Temperature),8(Pressure),10(Cumulative Wind Speed)
 data = prsa2010.iloc[2200:2700,[5,8]].values
 
