@@ -1,4 +1,4 @@
-from copent import copent
+from copent import transent
 from pandas import read_csv
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,14 +10,7 @@ data = prsa2010.iloc[2200:2700,[5,8]].values
 
 te = np.zeros(24)
 for lag in range(1,25):
-	pm25a = data[0:(500-lag),0]
-	pm25b = data[lag:500,0]
-	cause = data[0:(500-lag),1]
-	data123 = np.vstack((pm25a,pm25b,cause)).T
-	data12 = np.vstack((pm25a,pm25b)).T
-	data13 = np.vstack((pm25a,cause)).T
-	# estimating transfer entropy
-	te[lag-1] = copent(data123) - copent(data12) - copent(data13)
+	te[lag-1] = transent(data[:,1],data[:,2],lag)
 	str = "TE from pressure to PM2.5 at %d hours lag : %f" %(lag,te[lag-1])
 	print(str)
 	
@@ -27,5 +20,4 @@ plt.xlabel('lag(hours)')
 pos = np.array([4,9,14,19])
 plt.xticks(pos,pos+1)
 plt.ylabel('Transfer Entropy')
-plt.show()
-	
+plt.show()	
