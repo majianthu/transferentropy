@@ -14,9 +14,7 @@ for (lag in 1:24){
   pm25a = data[1:(501-lag),1]
   pm25b = data[(lag+1):501,1]
   v1 = data[1:(501-lag),2]
-  data1 = cbind(pm25a, pm25b, v1)
-  # estimating transfer entropy via copula entropy
-  te1[lag] = copent(data1) - copent(data1[,c(1,2)]) - copent(data1[,c(1,3)]) 
+  te1[lag] = ci(pm25b,v1,pm25a) 
   kci1[lag] = KCI(pm25b,v1,pm25a)$testStatistic
   cdc1[lag] = cdcor(pm25b,v1,pm25a)
 }
