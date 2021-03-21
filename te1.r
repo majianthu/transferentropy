@@ -14,7 +14,11 @@ for (lag in 1:24){
   pm25a = data[1:(501-lag),1]
   pm25b = data[(lag+1):501,1]
   v1 = data[1:(501-lag),2]
-  te1[lag] = ci(pm25b,v1,pm25a) 
+  # conditional independence test with copula entropy
+  te1[lag] = ci(pm25b,v1,pm25a)  
+  # or estimating transfer entropy as below
+  # te1[lag] = transent(data[,1],data[,2],lag)
+  
   kci1[lag] = KCI(pm25b,v1,pm25a)$testStatistic
   cdc1[lag] = cdcor(pm25b,v1,pm25a)
 }
