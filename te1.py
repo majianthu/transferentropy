@@ -10,7 +10,7 @@ data = prsa2010.iloc[2200:2700,[5,8]].values
 
 te = np.zeros(24)
 for lag in range(1,25):
-	te[lag-1] = transent(data[:,1],data[:,2],lag)
+	te[lag-1] = transent(data[:,0],data[:,1],lag)
 	str = "TE from pressure to PM2.5 at %d hours lag : %f" %(lag,te[lag-1])
 	print(str)
 	
