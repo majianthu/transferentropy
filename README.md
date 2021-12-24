@@ -1,7 +1,7 @@
 # Estimating Transfer Entropy via Copula Entropy
 This is the code for the preprint paper "Estimating Transfer Entropy via Copula Entropy" which available at [here](https://arxiv.org/abs/1910.04375). A non-parametric method for estimating Transfer Entropy via estimating three Copula Entropy terms is proposed in this paper.
 
-The proposed method is implemented in the R and Python package '**copent**', avaible at 
+The proposed method is implemented in the R and Python package '**copent**', available at 
 * R : [here](https://github.com/majianthu/copent) and  [CRAN](https://cran.r-project.org/package=copent), 
 * Python : [here](https://github.com/majianthu/pycopent) and [PyPI](https://pypi.org/project/copent). 
  
