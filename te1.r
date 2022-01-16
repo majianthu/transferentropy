@@ -1,5 +1,6 @@
 library(copent) # transfer entropy (TE)
 library(CondIndTests) # kernel-based CI test (KCI)
+library(RCIT) # Randomized conditional Correlation Test (RCoT)
 library(cdcsis) # conditional distance correlation (CDC)
 library(FOCI) # conditional dependence coefficient (CODEC)
 library(GeneralisedCovarianceMeasure) # Generalised Covariance Measure (GCM)
@@ -13,6 +14,7 @@ data = prsa2010data[2200:2700, idx]
 
 te1 = 0
 kci1 = 0
+rcot1 = 0
 cdc1 = 0
 codec1 = 0
 gcm1 = 0
@@ -22,12 +24,14 @@ for (lag in 1:24){
   pm25a = data[1:(501-lag),1]
   pm25b = data[(lag+1):501,1]
   v1 = data[1:(501-lag),2]
+  
   # conditional independence test with copula entropy
   te1[lag] = ci(pm25b,v1,pm25a)  
   # or estimating transfer entropy directly as below
   # te1[lag] = transent(data[,1],data[,2],lag)
   
   kci1[lag] = KCI(pm25b,v1,pm25a)$testStatistic
+  rcot1[lag] = RCIT(pm25b,v1,pm25a)$Sta
   cdc1[lag] = cdcor(pm25b,v1,pm25a)
   codec1[lag] = codec(pm25b,v1,pm25a)
   gcm1[lag] = gcm.test(pm25b,v1,pm25a)$test.statistic
@@ -43,6 +47,10 @@ lines(te1)
 x11()
 plot(kci1, xlab = "lag (hours)", ylab = "KCI", main = "Pressure")
 lines(kci1)
+# RCoT
+x11()
+plot(rcot1, xlab = "lag (hours)", ylab = "RCoT", main = "Pressure")
+lines(rcot1)
 # CDC
 x11()
 cdc1 = unlist(cdc1)
