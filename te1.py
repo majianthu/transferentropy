@@ -1,39 +1,51 @@
 from copent import transent, ci
 import knncmi as k
 from pycit import citest
-from pandas import read_csv, DataFrame
+from fcit import fcit
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
 url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00381/PRSA_data_2010.1.1-2014.12.31.csv"
-prsa2010 = read_csv(url)
+prsa2010 = pd.read_csv(url)
 # index: 5(PM2.5),6(Dew Point),7(Temperature),8(Pressure),10(Cumulative Wind Speed)
 data = prsa2010.iloc[2200:2700,[5,8]].values
 
-te = np.zeros(24)
+te1 = np.zeros(24)
 cmi1 = np.zeros(24)
 ci1 = np.zeros(24)
+fcit1 = np.zeros(24)
 for lag in range(1,25):
 	x1 = data[0:(500-lag),0]
 	x2 = data[lag:500,0]
 	y = data[0:(500-lag),1]
-	df = DataFrame(np.vstack((x2,y,x1)).T, columns = ['x2','y','x1'])
 	
-	te[lag-1] = ci(x2,y,x1)
-	# te[lag-1] = transent(data[:,0],data[:,1],lag)
-	cmi1[lag-1] = k.cmi(['x2'], ['y'], ['x1'], 3, df)
+	## copent
+	te1[lag-1] = ci(x2,y,x1)
+	# te1[lag-1] = transent(data[:,0],data[:,1],lag)
+	## knncmi
+	df = pd.DataFrame(np.vstack((x2,y,x1)).T, columns = ['x2','y','x1'])
+	cmi1[lag-1] = k.cmi(['x2'], ['y'], ['x1'], 3, df)	
+	## pycit
 	ci1[lag-1] = citest(x2, y, x1, test_args={'statistic': 'ksg_mi'})
+	## fcit
+	len1 = len(x1)
+	x2a = np.reshape(x2,[len1,1])
+	ya = np.reshape(y,[len1,1])
+	x1a = np.reshape(x1,[len1,1])
+	fcit1[lag-1] = fcit.test(x2a,ya,x1a)
 	
-	str = "lag : %d; TE : %f; CMI : %f; CI : %f" %(lag,te[lag-1],cmi1[lag-1],ci1[lag-1])
+	str = "lag : %d; TE : %f; CMI : %f; CI : %f; fcit : %f" %(lag,te1[lag-1],cmi1[lag-1],ci1[lag-1],fcit1[lag-1])
 	print(str)
 	
-plt.plot(te,'g',label = 'copent')
+plt.plot(te1,'g',label = 'copent')
 plt.plot(cmi1,'r',label = 'knncmi')
 plt.plot(ci1,'b', label = 'pycit')
+plt.plot(fcit1,'y', label = 'fcit')
 plt.title("Pressure on PM2.5")
 plt.xlabel('lag(hours)')
 pos = np.array([4,9,14,19])
 plt.xticks(pos,pos+1)
-plt.ylabel('Transfer Entropy')
+plt.ylabel('Causality')
 plt.legend()
 plt.show()		
