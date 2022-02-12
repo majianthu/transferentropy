@@ -13,7 +13,9 @@ The method is demonstrated in the experiment with the [UCI Beijing PM2.5 data](h
 * Generalised Covariance Measure (GCM) [5];
 * Kernel Partial Correlation (KPC) [6];
 * Partial Correlation (pcor);
-* Randomized conditional Correlation Test (RCoT) [7].
+* Randomized conditional Correlation Test (RCoT) [7];
+* kNN based Conditional Mutual Information Estimators [8,9];
+* Fast Conditional Independence Test (fcit) [10].
 
 ## References
 1. Ma, J. Estimating Transfer Entropy via Copula Entropy. arXiv preprint arXiv:1910.04375, 2019.
@@ -23,3 +25,6 @@ The method is demonstrated in the experiment with the [UCI Beijing PM2.5 data](h
 5. Shah, R. D. & Peters, J. The hardness of conditional independence testing and the generalised covariance measure. Annals of Statistics, 2020, 48, 1514-1538.
 6. Huang, Z.; Deb, N. & Sen, B. Kernel Partial Correlation Coefficient -- a Measure of Conditional Dependence. arXiv preprint arXiv:2012.14804, 2020.
 7. Strobl, E. V.; Zhang, K. & Visweswaran, S. Approximate Kernel-based Conditional Independence Tests for Fast Non-Parametric Causal Discovery. arXiv preprint arXiv:1702.03877, 2017.
+8. Runge, J. (2018). Conditional independence testing based on a nearest-neighbor estimator of conditional mutual information. In AISTATS'18.
+9. Octavio César Mesner, Cosma Rohilla Shalizi. Conditional Mutual Information Estimation for Mixed Discrete and Continuous Variables with Nearest Neighbors. arXiv preprint arXiv:1912.03387, 2019.
+10. Krzysztof Chalupka, Pietro Perona, Frederick Eberhardt. Fast Conditional Independence Test for Vector Variables with Large Sample Sizes. arXiv preprint arXiv:1804.02747, 2018.
