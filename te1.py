@@ -1,5 +1,6 @@
 from copent import transent, ci
 import knncmi as k
+from causallearn.utils.KCI.KCI import KCI_CInd
 from pycit import citest
 from fcit import fcit
 import pandas as pd
@@ -13,6 +14,7 @@ data = prsa2010.iloc[2200:2700,[5,8]].values
 
 te1 = np.zeros(24)
 cmi1 = np.zeros(24)
+kci1 = np.zeros(24)
 ci1 = np.zeros(24)
 fcit1 = np.zeros(24)
 for lag in range(1,25):
@@ -34,12 +36,16 @@ for lag in range(1,25):
 	ya = np.reshape(y,[len1,1])
 	x1a = np.reshape(x1,[len1,1])
 	fcit1[lag-1] = fcit.test(x2a,ya,x1a)
+	## causal-learn
+	kci_cind = KCI_CInd()
+	kci1[lag-1],_ = kci_cind.compute_pvalue(x2a,ya,x1a)
 	
-	str = "lag : %d; TE : %f; CMI : %f; CI : %f; fcit : %f" %(lag,te1[lag-1],cmi1[lag-1],ci1[lag-1],fcit1[lag-1])
+	str = "lag: %d; TE: %f; CMI: %f; KCI: %f; CI: %f; fcit: %f" %(lag,te1[lag-1],cmi1[lag-1],kci1[lag-1],ci1[lag-1],fcit1[lag-1])
 	print(str)
 	
 plt.plot(te1,'g',label = 'copent')
 plt.plot(cmi1,'r',label = 'knncmi')
+plt.plot(kci1,'c', label = 'causal-learn')
 plt.plot(ci1,'b', label = 'pycit')
 plt.plot(fcit1,'y', label = 'fcit')
 plt.title("Pressure on PM2.5")
