@@ -1,5 +1,5 @@
 from copent import transent, ci
-import knncmi as k
+from knncmi import cmi
 from causallearn.utils.KCI.KCI import KCI_CInd
 from pycit import citest
 from fcit import fcit
@@ -10,7 +10,10 @@ import matplotlib.pyplot as plt
 url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00381/PRSA_data_2010.1.1-2014.12.31.csv"
 prsa2010 = pd.read_csv(url)
 # index: 5(PM2.5),6(Dew Point),7(Temperature),8(Pressure),10(Cumulative Wind Speed)
-data = prsa2010.iloc[2200:2700,[5,8]].values
+varname = ["","","","","","PM2.5","Dew Point","Temperature","Pressure","","CWS"]
+eid = 5 # effect
+cid = 8 # cause
+data = prsa2010.iloc[2200:2700,[eid,cid]].values
 
 te1 = np.zeros(24)
 cmi1 = np.zeros(24)
@@ -27,7 +30,7 @@ for lag in range(1,25):
 	# te1[lag-1] = transent(data[:,0],data[:,1],lag)
 	## knncmi
 	df = pd.DataFrame(np.vstack((x2,y,x1)).T, columns = ['x2','y','x1'])
-	cmi1[lag-1] = k.cmi(['x2'], ['y'], ['x1'], 3, df)	
+	cmi1[lag-1] = cmi(['x2'], ['y'], ['x1'], 3, df)	
 	## pycit
 	ci1[lag-1] = citest(x2, y, x1, test_args={'statistic': 'ksg_mi'})
 	## fcit
@@ -40,7 +43,7 @@ for lag in range(1,25):
 	kci_cind = KCI_CInd()
 	kci1[lag-1],_ = kci_cind.compute_pvalue(x2a,ya,x1a)
 	
-	str = "lag: %d; TE: %f; CMI: %f; KCI: %f; CI: %f; fcit: %f" %(lag,te1[lag-1],cmi1[lag-1],kci1[lag-1],ci1[lag-1],fcit1[lag-1])
+	str = "lag: %d; TE: %.3f; CMI: %.3f; KCI: %.3f; CI: %.3f; fcit: %.3f" %(lag,te1[lag-1],cmi1[lag-1],kci1[lag-1],ci1[lag-1],fcit1[lag-1])
 	print(str)
 	
 plt.plot(te1,'g',label = 'copent')
@@ -48,7 +51,8 @@ plt.plot(cmi1,'r',label = 'knncmi')
 plt.plot(kci1,'c', label = 'causal-learn')
 plt.plot(ci1,'b', label = 'pycit')
 plt.plot(fcit1,'y', label = 'fcit')
-plt.title("Pressure on PM2.5")
+title = "%s on %s" % (varname[cid],varname[eid])
+plt.title(title)
 plt.xlabel('lag(hours)')
 pos = np.array([4,9,14,19])
 plt.xticks(pos,pos+1)
