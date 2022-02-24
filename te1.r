@@ -35,7 +35,7 @@ for (lag in 1:24){
   cdc1[lag] = cdcor(pm25b,v1,pm25a)$statistic
   codec1[lag] = codec(pm25b,v1,pm25a)
   gcm1[lag] = gcm.test(pm25b,v1,pm25a)$test.statistic
-  kpc1[lag] = KPCRKHS(pm25b,v1,pm25a)
+  kpc1[lag] = KPCRKHS(pm25b,pm25a,v1)
   pcor1[lag] = pcor.test(pm25b,v1,pm25a)$statistic
 }
 
