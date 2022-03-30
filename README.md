@@ -15,7 +15,8 @@ The method is demonstrated in the experiment with the [UCI Beijing PM2.5 data](h
 * Partial Correlation (pcor);
 * Randomized conditional Correlation Test (RCoT) [7];
 * kNN based Conditional Mutual Information Estimators [8,9];
-* Fast Conditional Independence Test (fcit) [10].
+* Fast Conditional Independence Test (fcit) [10];
+* Model-Powered Conditional Independence Test (CCIT) [11].
 
 ## References
 1. Ma, J. Estimating Transfer Entropy via Copula Entropy. arXiv preprint arXiv:1910.04375, 2019.
@@ -28,3 +29,4 @@ The method is demonstrated in the experiment with the [UCI Beijing PM2.5 data](h
 8. Runge, J. (2018). Conditional independence testing based on a nearest-neighbor estimator of conditional mutual information. In AISTATS'18.
 9. Octavio César Mesner, Cosma Rohilla Shalizi. Conditional Mutual Information Estimation for Mixed Discrete and Continuous Variables with Nearest Neighbors. arXiv preprint arXiv:1912.03387, 2019.
 10. Krzysztof Chalupka, Pietro Perona, Frederick Eberhardt. Fast Conditional Independence Test for Vector Variables with Large Sample Sizes. arXiv preprint arXiv:1804.02747, 2018.
+11. Rajat Sen, Ananda Theertha Suresh, Karthikeyan Shanmugam, Alexandros G. Dimakis, Sanjay Shakkottai. Model-Powered Conditional Independence Test. NIPS 2017: 2951-2961.
