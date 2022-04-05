@@ -4,6 +4,7 @@ library(RCIT) # Randomized conditional Correlation Test (RCoT)
 library(cdcsis) # conditional distance correlation (CDC)
 library(FOCI) # conditional dependence coefficient (CODEC)
 library(GeneralisedCovarianceMeasure) # Generalised Covariance Measure (GCM)
+library(weightedGCM) # weighted GCM
 library(KPC) # Kernel Partial Correlation (KPC)
 library(ppcor) # Partial Correlation (pcor)
 library(CondCopulas) # Conditional Kendall's Tau (CKT)
@@ -20,6 +21,7 @@ rcot1 = 0
 cdc1 = 0
 codec1 = 0
 gcm1 = 0
+wgcm1 = 0
 kpc1 = 0
 pcor1 = 0
 ckt1 = 0
@@ -39,6 +41,7 @@ for (lag in 1:24){
   cdc1[lag] = cdcor(pm25b,v1,pm25a)$statistic
   codec1[lag] = codec(pm25b,v1,pm25a)
   gcm1[lag] = gcm.test(pm25b,v1,pm25a)$test.statistic
+  wgcm1[lag] = wgcm.est(pm25b,v1,pm25a, regr.meth = "xgboost")
   kpc1[lag] = KPCRKHS(pm25b,pm25a,v1)
   pcor1[lag] = pcor.test(pm25b,v1,pm25a)$statistic
   ckt1[lag] = CKT.estimate(pm25b,v1,pm25a, methodEstimation = "tree", h = 0.1)
@@ -70,6 +73,10 @@ lines(codec1)
 x11()
 plot(gcm1, xlab = "lag (hours)", ylab = "GCM", main = "Pressure")
 lines(gcm1)
+# wGCM
+x11()
+plot(wgcm1, xlab = "lag (hours)", ylab = "wGCM", main = "Pressure")
+lines(wgcm1)
 # KPC
 x11()
 plot(kpc1, xlab = "lag (hours)", ylab = "KPC", main = "Pressure")
