@@ -7,6 +7,7 @@ library(GeneralisedCovarianceMeasure) # Generalised Covariance Measure (GCM)
 library(KPC) # Kernel Partial Correlation (KPC)
 library(ppcor) # Partial Correlation (pcor)
 library(CondCopulas) # Conditional Kendall's Tau (ckt)
+library(EDMeasure) # Conditional Mean Dependence (CMD)
 
 prsa2010data = read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/00381/PRSA_data_2010.1.1-2014.12.31.csv")
 # id: 6(PM2.5), 7(Dew Point), 8(Temperature), 9(Pressure), 11(Cumulative Wind Speed)
@@ -22,6 +23,7 @@ gcm1 = 0
 kpc1 = 0
 pcor1 = 0
 ckt1 = 0
+cmd1 = 0
 for (lag in 1:24){
   pm25a = data[1:(501-lag),1]
   pm25b = data[(lag+1):501,1]
@@ -40,6 +42,7 @@ for (lag in 1:24){
   kpc1[lag] = KPCRKHS(pm25b,pm25a,v1)
   pcor1[lag] = pcor.test(pm25b,v1,pm25a)$statistic
   ckt1[lag] = CKT.estimate(pm25b,v1,pm25a, methodEstimation = "tree", h = 0.1)
+  cmd1[lag] = cmdm_test(pm25b,v1,pm25a)$stat
 }
 
 # TE via CE
@@ -80,3 +83,7 @@ lines(pcor1)
 x11()
 plot(ckt1, xlab = "lag (hours)", ylab = "CKT", main = "Pressure")
 lines(ckt1)
+# Conditional Mean Dependence
+x11()
+plot(cmd1, xlab = "lag (hours)", ylab = "CMD", main = "Pressure")
+lines(cmd1)
