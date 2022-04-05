@@ -6,7 +6,7 @@ library(FOCI) # conditional dependence coefficient (CODEC)
 library(GeneralisedCovarianceMeasure) # Generalised Covariance Measure (GCM)
 library(KPC) # Kernel Partial Correlation (KPC)
 library(ppcor) # Partial Correlation (pcor)
-library(CondCopulas) # Conditional Kendall's Tau (ckt)
+library(CondCopulas) # Conditional Kendall's Tau (CKT)
 library(EDMeasure) # Conditional Mean Dependence (CMD)
 
 prsa2010data = read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/00381/PRSA_data_2010.1.1-2014.12.31.csv")
