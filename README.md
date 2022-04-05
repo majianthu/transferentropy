@@ -18,7 +18,8 @@ The method is demonstrated in the experiment with the [UCI Beijing PM2.5 data](h
 * Fast Conditional Independence Test (fcit) [10];
 * Model-Powered Conditional Independence Test (CCIT) [11];
 * Predictive Conditional Independence Testing (PCIT) [12];
-* Conditional Kendall's Tau (CKT) [13].
+* Conditional Kendall's Tau (CKT) [13];
+* Conditional Mean Dependence (CMD) [14].
 
 ## References
 1. Ma, J. Estimating Transfer Entropy via Copula Entropy. arXiv preprint arXiv:1910.04375, 2019.
@@ -34,3 +35,4 @@ The method is demonstrated in the experiment with the [UCI Beijing PM2.5 data](h
 11. Rajat Sen, Ananda Theertha Suresh, Karthikeyan Shanmugam, Alexandros G. Dimakis, Sanjay Shakkottai. Model-Powered Conditional Independence Test. NIPS 2017: 2951-2961.
 12. Samuel Burkart, Franz J Király. Predictive Independence Testing, Predictive Conditional Independence Testing, and Predictive Graphical Modelling. arXiv preprint arXiv:1711.05869, 2017.
 13. Alexis Derumigny, Jean-David Fermanian. A classification point-of-view about conditional Kendall’s tau. Computational Statistics & Data Analysis, 135, 70-94, 2019.
+14. Xiaofeng Shao, Jingsi Zhang. Martingale Difference Correlation and Its Use in High-Dimensional Variable Screening. Journal of the American Statistical Association, 109(507), 1302-1318, 2014.
