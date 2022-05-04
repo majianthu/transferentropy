@@ -39,4 +39,4 @@ The method is demonstrated in the experiment with the [UCI Beijing PM2.5 data](h
 13. Samuel Burkart, Franz J Király. Predictive Independence Testing, Predictive Conditional Independence Testing, and Predictive Graphical Modelling. arXiv preprint arXiv:1711.05869, 2017.
 14. Alexis Derumigny, Jean-David Fermanian. A classification point-of-view about conditional Kendall’s tau. Computational Statistics & Data Analysis, 135, 70-94, 2019.
 15. Xiaofeng Shao, Jingsi Zhang. Martingale Difference Correlation and Its Use in High-Dimensional Variable Screening. Journal of the American Statistical Association, 109(507), 1302-1318, 2014.
-16. Petersen, L., & Hansen, N. R. (2021). Testing Conditional Independence via Quantile Regression Based Partial Copulas. Journal of Machine Learning Research, 22, 1-47.
+16. Petersen, L., & Hansen, N. R. Testing Conditional Independence via Quantile Regression Based Partial Copulas. Journal of Machine Learning Research, 22, 1-47, 2021.
