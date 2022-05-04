@@ -9,7 +9,7 @@ library(KPC) # Kernel Partial Correlation (KPC)
 library(ppcor) # Partial Correlation (pcor)
 library(CondCopulas) # Conditional Kendall's Tau (CKT)
 library(EDMeasure) # Conditional Mean Dependence (CMD)
-source("https://raw.githubusercontent.com/lassepetersen/partial-copula-CI-test/main/parCopCITest.R") # partial copula based CI test
+source("https://raw.githubusercontent.com/lassepetersen/partial-copula-CI-test/main/parCopCITest.R") # partial copula based CI test (pcop)
 
 prsa2010data = read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/00381/PRSA_data_2010.1.1-2014.12.31.csv")
 # id: 6(PM2.5), 7(Dew Point), 8(Temperature), 9(Pressure), 11(Cumulative Wind Speed)
