@@ -65,7 +65,6 @@ plot(rcot1, xlab = "lag (hours)", ylab = "RCoT", main = "Pressure")
 lines(rcot1)
 # CDC
 x11()
-cdc1 = unlist(cdc1)
 plot(cdc1, xlab = "lag (hours)", ylab = "CDC", main = "Pressure")
 lines(cdc1)
 # CODEC
