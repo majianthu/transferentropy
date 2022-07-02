@@ -86,7 +86,6 @@ plot(kpc1, xlab = "lag (hours)", ylab = "KPC", main = "Pressure")
 lines(kpc1)
 # Partial Correlation
 x11()
-pcor1 = unlist(pcor1)
 plot(pcor1, xlab = "lag (hours)", ylab = "Partial Correlation", main = "Pressure")
 lines(pcor1)
 # Conditional Kendall's Tau
