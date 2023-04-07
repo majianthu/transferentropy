@@ -23,6 +23,8 @@ The method is demonstrated in the experiment with the [UCI Beijing PM2.5 data](h
 * Conditional Mean Dependence (CMD) [15];
 * Partial Copula based CI test [16].
 
+For more comparison experiments on conditional independence measures, please refer to our paper "Evaluating Independence and Conditional Independence Measures" at [here](https://arxiv.org/abs/2205.07253) and the assoicated code at [here](https://github.com/majianthu/eval).
+
 ## References
 1. Ma, J. Estimating Transfer Entropy via Copula Entropy. arXiv preprint arXiv:1910.04375, 2019.
 2. Wang, X.; Pan, W.; Hu, W.; Tian, Y. & Zhang, H. Conditional distance correlation. Journal of the American Statistical Association, 2015, 110, 1726-1734.
